@@ -11,4 +11,36 @@ class OrderController extends Controller
         $order=OrderModel::where(['id'=>$id])->first()->toarray();
         print_r($order);
     }
+    public function add(){
+        $data=[
+          'username'=>str_random(5)
+        ];
+        $add=OrderModel::insert($data);
+        dump($add);
+    }
+    public function show(){
+        $add=OrderModel::get()->toArray();
+        dump($add);
+    }
+    public function upd($id){
+        $data=[
+            'username'=>str_random(5)
+        ];
+        $where=[
+            'id'=>$id
+        ];
+        $upd=OrderModel::Where(['id'=>$id])->update($data);
+        dump($upd);
+    }
+    public function  del($id){
+        $del=OrderModel::where(['id'=>$id])->delete();
+        dump($del);
+    }
+    public function web(){
+        $data=OrderModel::get();
+        $info=[
+            'info'=>$data
+        ];
+        return view('Order.order',$info);
+    }
 }

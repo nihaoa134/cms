@@ -16,4 +16,4 @@ Route::get('/', function () {
 });
 Route::get('user', 'User@text');
 
-Route::get('order/{id}','Order\OrderController@text');
+Route::get('order','Order\OrderController@web');
