@@ -22,24 +22,24 @@
             </div>
             <div class="baBody">
                 <div id="menu">
-                <div class="bbD">
-                    菜 单 名 ：<input type="text" class="input3" />
+                <div class="bbD" id="aaaa">
+                    菜 单 名 ：<input type="text" class="input3" id="name"/>
 
-                    菜单类型：<select class="input3">
+                    菜单类型：<select class="input3" id="type">
                         <option value="view">VIEW</option>
                         <option value="click">CLICK</option>
                     </select>
 
-                    菜单内容：<input class="input3" type="text" />
+                    菜单内容：<input class="input3" type="text" id="val"/>
                     <button class="top_btn" style="width: 100px;height: 40px;background-color:lawngreen;color:#fff;border: none;">克隆</button>
                 </div>
             </div>
-                <div class="bbD">
-                    <p class="bbDP">
-                        <button class="btn_ok btn_yes" href="#">提交</button>
-                        <a class="btn_ok btn_no" href="#">取消</a>
-                    </p>
-                </div>
+            <div class="bbD">
+                <p class="bbDP">
+                    <button class="btn_ok btn_yes" href="#" id="btn">提交</button>
+                    <a class="btn_ok btn_no" href="#">取消</a>
+                </p>
+            </div>
             </div>
         </div>
 
@@ -58,9 +58,34 @@
             var _this = $(this);
             var _div = _this.parents('#menu');
             //console.log(_div.length);
-            if ($('#menu').length3) {
                 _div.after(_div.clone());
+        });
+    })
+        //处理数组
+    $('#btn').click(function() {
+        var name=[];
+        var type=[];
+        var key=[];
+        $('.bbD').each(function(){
+            name.push($(this).find('#name').val());
+            type.push($(this).find('#type').val()) ;
+            key.push($(this).find('#val').val());
+        })
+
+        //console.log(info);
+
+        $.ajax({
+            url: '/domenu',
+            type: 'post',
+            data: {name:name,type:type,key:key},
+            dataType: 'json',
+            success: function (a) {
+                if(a.code == 0) {
+                    alert('发布成功')
+                }
             }
         });
     })
 </script>
+
+

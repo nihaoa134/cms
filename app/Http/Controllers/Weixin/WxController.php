@@ -11,7 +11,8 @@ class WxController extends Controller
     public function index(){
         return view('index');
     }
-/*获取accesstoken值*/
+
+    /*获取accesstoken值*/
     public function accessToken(){
         $obj = new \url();
         $appid = "wx0ed775ffa80afa46";
@@ -29,7 +30,8 @@ class WxController extends Controller
        $accessToken = cache($key);
         echo $accessToken;
     }
-/*刷新accesstoken*/
+
+    /*刷新accesstoken*/
     public function shuaxin()
     {
         $obj = new \url();
@@ -42,7 +44,8 @@ class WxController extends Controller
         echo $val;
     }
 
-/*创建菜单*/
+
+    /*创建菜单*/
     public function menu(){
         /*
         $key = "accesstoken";
@@ -85,5 +88,46 @@ class WxController extends Controller
         $bol =$objurl->sendPost($url,$strJson);
         var_dump($bol);*/
         return view("menu.menu");
+    }
+
+
+
+
+    /**
+     * 发布自定义菜单
+     */
+    public function domenu(Request $request)
+    {
+        $data = $request->input();
+//        print_r($data);die;
+        $count=count($data['name']);
+        $arr=array();
+        for($i=0;$i<$count;$i++){
+            if(($data['type'][$i]=="click")){
+                $arr[$i]['type']=$data['type'][$i];
+                $arr[$i]['name']=$data['name'][$i];
+                $arr[$i]['key']=$data['key'][$i];
+            }else{
+                $arr[$i]['type']=$data['type'][$i];
+                $arr[$i]['name']=$data['name'][$i];
+                $arr[$i]['url']=$data['key'][$i];
+            }
+
+        }
+        //print_r($arr);exit;
+        $info = [
+            'button'    =>  $arr
+        ];
+        //print_r($info);exit;
+        $jsoninfo=json_encode($info,true);
+        //print_r($jsoninfo);exit;
+        $obj = new \url();
+        $key = "accesstoken";
+        $accessToken = cache($key);
+        $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$accessToken";
+        $r = $obj->sendPost($url,$jsoninfo);
+        print_r($r);exit;
+        $respone = json_decode($r->getBody(),true);
+        print_r($respone);
     }
 }

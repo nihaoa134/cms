@@ -60,4 +60,5 @@ class UserController extends Controller
             $bol3[$k] = $obj->sendGet($url3);
         }
     }
+
 }

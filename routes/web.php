@@ -20,7 +20,8 @@ Route::get('user', 'User@text');
 Route::get('weixin','Weixin\WxController@index');
 Route::get('weixin/token','Weixin\WxController@accessToken'); //存入accessToken
 
-Route::get('weixin/menu','Weixin\WxController@menu'); //创建菜单
+Route::get('menu','Weixin\WxController@menu'); //创建菜单
+Route::any('domenu','Weixin\WxController@domenu'); //创建菜单
 
 Route::get('label','Label\labelController@label'); //添加标签页面
 Route::post('labeladd','Label\labelController@labeladd'); //添加标签
@@ -30,3 +31,23 @@ Route::any('shuaxin','Weixin\WxController@shuaxin'); //刷新accesstoken
 
 Route::any('user','User\UserController@usershow'); //用户展示
 Route::get('blake','User\UserController@blakeshow'); //拉黑用户blackshow
+
+Route::any('addmatter','Matter\MatterController@addMatter'); //添加素材页面
+Route::any('matter','Matter\MatterController@Matter'); //添加临时素材
+Route::any('getmatter','Matter\MatterController@getMatter'); //获取临时素材
+Route::any('upload','Matter\MatterController@upload'); //上传素材到redis
+
+Route::any('show','Matter\MatterController@showupload'); //素材展示
+
+Route::any('','Mass\MassController@idMass'); //id群发
+Route::any('labMass','Mass\MassController@labMass'); //标签群发
+Route::any('temp','Mass\MassController@temp'); //群发模板
+Route::any('users','Mass\MassController@user'); //获取用户列表
+Route::any('usermsg','Mass\MassController@usermsg'); //获取用户列表
+Route::any('labeldo','Mass\MassController@labeldo'); //获取用户列表
+
+
+Route::any('lookmass','Mass\MassController@LookMass'); //群发状态
+
+
+
