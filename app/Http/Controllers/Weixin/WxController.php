@@ -136,10 +136,10 @@ class WxController extends Controller
     }
 	public function wxlogin(){
 
-        $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
+        $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0ed775ffa80afa46&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
         echo "<a href=".$url.">微信登陆</a>";
 	}
     public function  wxlogincode(){
-        
+
     }
 }
