@@ -49,5 +49,13 @@ Route::any('labeldo','Mass\MassController@labeldo'); //获取用户列表
 
 Route::any('lookmass','Mass\MassController@LookMass'); //群发状态
 
+Route::any('123','Weixin\WxController@tanchi'); //tanchi
+
+Route::any('wxlogin','Weixin\WxController@wxlogin'); //微信登陆
+Route::any('123','Weixin\WxController@tanchi'); //tanchi
+Route::any('123','Weixin\WxController@tanchi'); //tanchi
+
+
+
 
 

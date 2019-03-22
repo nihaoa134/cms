@@ -31,7 +31,7 @@ class WxController extends Controller
         echo $accessToken;
     }
 
-    /*刷新accesstoken*/
+    /*获取accesstoken*/
     public function shuaxin()
     {
         $obj = new \url();
@@ -125,9 +125,21 @@ class WxController extends Controller
         $key = "accesstoken";
         $accessToken = cache($key);
         $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$accessToken";
-        $r = $obj->sendPost($url,$jsoninfo);
+        $r = $obj->sendPost($url,$jsoninfo); 
         print_r($r);exit;
         $respone = json_decode($r->getBody(),true);
         print_r($respone);
+    }
+
+    public function  tanchi(){
+        return view("menu.123");
+    }
+	public function wxlogin(){
+
+        $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
+        echo "<a href=".$url.">微信登陆</a>";
+	}
+    public function  wxlogincode(){
+        
     }
 }
