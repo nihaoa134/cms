@@ -143,7 +143,6 @@ class WxController extends Controller
 	}
     public function  wxlogincode(Request $request){
         print_r($_GET);
-        exit;
         $appid = "wx0ed775ffa80afa46";
         $appsecret= "6a5574a26d9bc3db5a3df198f16d855d";
         $code = $request->input('code');
