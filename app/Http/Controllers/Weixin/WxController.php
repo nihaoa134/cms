@@ -136,7 +136,7 @@ class WxController extends Controller
     }
 	public function wxlogin(){
         $url = "node.lixiaonitongxue.top";
-        $scope = "snsapi_userinfo";
+        $scope = "snsapi_base";
         $wxurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0ed775ffa80afa46&redirect_uri=$url&response_type=code&scope=$scope&state=STATE#wechat_redirect";
         echo "<a href=".$wxurl.">微信登陆</a>";
 	}
