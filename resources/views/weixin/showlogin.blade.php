@@ -35,7 +35,7 @@
                         <td width="250px" class="tdColor">时间</td>
 
                     </tr>
-                    @foreach($data['$res'] as $v)
+                    @foreach($data as $v)
                         <tr height="30px">
                             <td>
                                 {{$v['id']}}
