@@ -156,6 +156,13 @@ class WxController extends Controller
         $like="openid";
         $redis->rpush($like,$openid);
         $data = $redis->lrange($like,0,-1);
-        print_r($data);
+        //print_r($data);
      }
+	 public function showlogin(){
+		 $redis = new \redis;
+        $redis->connect("127.0.0.1",6379);//exit;
+        $like="wxlogin";
+        $data = $redis->lrange($like,0,-1);
+        //print_r($data);
+	 }
 }
