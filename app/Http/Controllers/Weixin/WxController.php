@@ -168,7 +168,7 @@ class WxController extends Controller
              $arr = $redis -> hGetAll($v);
              array_push($res,$arr);
          }
-        print_r($arr);
+        print_r($data);
 	 }
 
 }
