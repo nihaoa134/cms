@@ -163,6 +163,12 @@ class WxController extends Controller
         $redis->connect("127.0.0.1",6379);//exit;
         $like="wxlogin";
         $data = $redis->lrange($like,0,-1);
-        print_r($data);
+         $res =array();
+         foreach($data as $k => $v){
+             $arr = $redis -> hGetAll($v);
+             array_push($res,$arr);
+         }
+        print_r($arr);
 	 }
+
 }
