@@ -55,6 +55,9 @@ Route::any('wxlogin','Weixin\WxController@wxlogin'); //微信登陆获取code
 Route::any('wxlogincode','Weixin\WxController@wxlogincode'); //处理code
 Route::any('123','Weixin\WxController@tanchi'); //tanchi
 
+Route::any('showlogin','Weixin\WxController@showlogin'); //tanchi
+
+
 
 
 
