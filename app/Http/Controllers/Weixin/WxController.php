@@ -50,6 +50,7 @@ class WxController extends Controller
 
         //解析XML
         $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
+        exit;
         $openid = $xml->FromUserName;               //用户openid
         $event = $xml->Event;                       //事件类型
 
