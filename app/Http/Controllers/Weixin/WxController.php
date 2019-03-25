@@ -230,7 +230,7 @@ class WxController extends Controller
             "action_name" => "QR_SCENE",
             "action_info" => array(
                 "scene" =>array(
-                    "scene_id" => 1111,
+                    "scene_id" => 1,
                 )
             )
         );
@@ -245,6 +245,20 @@ class WxController extends Controller
         file_put_contents("./1.jpg",$res);
         //print_r($res);
 
+    }
+    //登陆扫码
+    public function codelogin()
+    {
+        $redis = new \redis;
+        $redis->connect("127.0.0.1", 6379);//exit;
+        $like = "listkey";
+        $data = $redis->lrange($like, 0, -1);
+        $res = array();
+        foreach ($data as $k => $v) {
+            $arr = $redis->hGetAll($v);
+            array_push($res, $arr);
+        }
+        return view('weixin.showlogin', ['res' => $res]);
     }
 
 }
