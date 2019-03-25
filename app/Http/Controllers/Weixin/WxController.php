@@ -23,7 +23,7 @@ class WxController extends Controller
 
     }
     //接收事件
-   /* public function jieshou(){
+    public function jieshou(){
         $data = file_get_contents("php://input");
         file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
 
@@ -57,7 +57,7 @@ class WxController extends Controller
 
             exit();
         }
-    }*/
+    }
     /*获取accesstoken值*/
     public function accessToken(){
         $obj = new \url();
