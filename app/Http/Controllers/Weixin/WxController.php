@@ -18,14 +18,13 @@ class WxController extends Controller
     {
         echo $_GET['echostr'];
         $data = file_get_contents("php://input");
+        file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
 
-        //解析XML
-        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
     }
     //接收事件
-    public function jieshou(){
+   /* public function jieshou(){
         $data = file_get_contents("php://input");
-
+        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
 
         //解析XML
         $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
@@ -57,7 +56,7 @@ class WxController extends Controller
 
             exit();
         }
-    }
+    }*/
     /*获取accesstoken值*/
     public function accessToken(){
         $obj = new \url();

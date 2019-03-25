@@ -23,6 +23,7 @@ Route::get('weixin/token','Weixin\WxController@accessToken'); //存入accessToke
 
 Route::get('menu','Weixin\WxController@menu'); //创建菜单
 Route::any('domenu','Weixin\WxController@domenu'); //创建菜单
+Route::any('jieshou','Weixin\WxController@jieshou'); //接收事件
 
 
 Route::get('label','Label\labelController@label'); //添加标签页面
