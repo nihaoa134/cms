@@ -20,10 +20,14 @@ class WxController extends Controller
         $data = file_get_contents("php://input");
 //        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         $objxml = simplexml_load_string($data);
+        print_r($objxml);
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
+        $redis = new \redis;
+        $redis->connect("127.0.0.1",6379);//exit;
+        $like = '';
 
     }
-    //接收事件
+/*    //接收事件
     public function jieshou(){
         $data = file_get_contents("php://input");
 
@@ -57,7 +61,7 @@ class WxController extends Controller
 
             exit();
         }
-    }
+    }*/
     /*获取accesstoken值*/
     public function accessToken(){
         $obj = new \url();
@@ -226,7 +230,7 @@ class WxController extends Controller
             "action_name" => "QR_SCENE",
             "action_info" => array(
                 "scene" =>array(
-                    "scene_id" => 123123,
+                    "scene_id" => 1111,
                 )
             )
         );
@@ -235,10 +239,10 @@ class WxController extends Controller
         $r = $obj->sendPost($url,$jsoninfo);
         $data = json_decode($r,true);
         $ticket = $data['ticket'];
-        print_r($ticket);
+        //print_r($ticket);
         $url2 = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=$ticket";
         $res = $obj->sendGet($url2);
-        file_put_contents("./111.jpg",$res);
+        file_put_contents("./1.jpg",$res);
         //print_r($res);
 
     }

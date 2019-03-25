@@ -59,7 +59,7 @@ Route::any('wxlogincode','Weixin\WxController@wxlogincode'); //处理code
 Route::any('123','Weixin\WxController@tanchi'); //tanchi
 
 Route::any('showlogin','Weixin\WxController@showlogin'); //登录展示
-Route::any('QRcode','Weixin\WxController@QRcode'); //tanchi
+Route::any('QRcode','Weixin\WxController@QRcode'); //二维码
 
 
 
