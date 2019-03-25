@@ -11,6 +11,13 @@ class WxController extends Controller
     public function index(){
         return view('index');
     }
+    /**
+     *首次接入
+     */
+    public function validToken1()
+    {
+        echo $_GET['echostr'];
+    }
 
     /*获取accesstoken值*/
     public function accessToken(){
