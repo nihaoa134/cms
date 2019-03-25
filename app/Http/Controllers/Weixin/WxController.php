@@ -230,7 +230,7 @@ class WxController extends Controller
             "action_name" => "QR_SCENE",
             "action_info" => array(
                 "scene" =>array(
-                    "scene_id" => 1,
+                    "scene_id" => 3,
                 )
             )
         );
@@ -242,7 +242,7 @@ class WxController extends Controller
         //print_r($ticket);
         $url2 = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=$ticket";
         $res = $obj->sendGet($url2);
-        file_put_contents("./1.jpg",$res);
+        file_put_contents("./3.jpg",$res);
         //print_r($res);
 
     }
