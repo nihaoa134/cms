@@ -22,6 +22,8 @@ Route::get('weixin/token','Weixin\WxController@accessToken'); //存入accessToke
 
 Route::get('menu','Weixin\WxController@menu'); //创建菜单
 Route::any('domenu','Weixin\WxController@domenu'); //创建菜单
+Route::any('jieshou','Weixin\WxController@jieshou'); //接收事件
+
 
 Route::get('label','Label\labelController@label'); //添加标签页面
 Route::post('labeladd','Label\labelController@labeladd'); //添加标签
@@ -55,7 +57,9 @@ Route::any('wxlogin','Weixin\WxController@wxlogin'); //微信登陆获取code
 Route::any('wxlogincode','Weixin\WxController@wxlogincode'); //处理code
 Route::any('123','Weixin\WxController@tanchi'); //tanchi
 
-Route::any('showlogin','Weixin\WxController@showlogin'); //tanchi
+Route::any('showlogin','Weixin\WxController@showlogin'); //登录展示
+Route::any('QRcode','Weixin\WxController@QRcode'); //tanchi
+
 
 
 

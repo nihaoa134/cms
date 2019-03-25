@@ -43,8 +43,42 @@ class WxController extends Controller
         $val = $obj->sendPost($url, $arrjson);
         echo $val;
     }
+    //接收事件
+    public function jieshou(){
+        $data = file_get_contents("php://input");
 
 
+        //解析XML
+        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
+        $openid = $xml->FromUserName;               //用户openid
+        $event = $xml->Event;                       //事件类型
+
+        // 处理用户发送消息
+        if(isset($xml->MsgType)){
+            if($xml->MsgType=='text'){            //用户发送文本消息
+                $msg = $xml->Content;
+                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. $msg. date('Y-m-d H:i:s') .']]></Content></xml>';
+                echo $xml_response;
+            }elseif($xml->MsgType=='image'){       //用户发送图片信息
+                //视业务需求是否需要下载保存图片
+                if(1){  //下载图片素材
+                    $this->dlWxImg($xml->MediaId);
+                    $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.'图片保存成功' . ' >>> ' . date('Y-m-d H:i:s') .']]></Content></xml>';
+                    echo $xml_response;
+                }
+            }elseif($xml->MsgType=='voice'){        //处理语音信息
+                $this->dlVoice($xml->MediaId);
+                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.'语音保存成功' . ' >>> ' . date('Y-m-d H:i:s') .']]></Content></xml>';
+                echo $xml_response;
+            }elseif($xml->MsgType=='video'){        //处理视频信息
+                $this->dlVideo($xml->MediaId);
+                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.'视频保存成功' . ' >>> ' . date('Y-m-d H:i:s') .']]></Content></xml>';
+                echo $xml_response;
+            }
+
+            exit();
+        }
+    }
     /*创建菜单*/
     public function menu(){
         /*
@@ -158,6 +192,7 @@ class WxController extends Controller
         $data = $redis->lrange($like,0,-1);
         //print_r($data);
      }
+     //登陆展示
 	 public function showlogin(){
 		 $redis = new \redis;
         $redis->connect("127.0.0.1",6379);//exit;
@@ -170,5 +205,31 @@ class WxController extends Controller
          }
          return view('weixin.showlogin', ['res' => $res]);
 	 }
+	 //生成二维码
+    public function QRcode(){
+        $key = "accesstoken";
+        $accessToken = cache($key);
+        $url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=$accessToken";
+        $arr = array(
+          "expire_seconds" => 604800,
+            "action_name" => "QR_SCENE",
+            "action_info" => array(
+                "scene" =>array(
+                    "scene_id" => 123123,
+                )
+            )
+        );
+        $jsoninfo = json_encode($arr,true);
+        $obj = new \url();
+        $r = $obj->sendPost($url,$jsoninfo);
+        $data = json_decode($r,true);
+        $ticket = $data['ticket'];
+        print_r($ticket);
+        $url2 = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=$ticket";
+        $res = $obj->sendGet($url2);
+        file_put_contents("./111.jpg",$res);
+        //print_r($res);
+
+    }
 
 }
