@@ -18,7 +18,7 @@ Route::get('user', 'User@text');
 
 
 Route::get('weixin','Weixin\WxController@index');
-Route::any('/valid1','Weixin\WxController@jieshou');
+Route::any('/valid1','Weixin\WxController@valid1');
 Route::get('weixin/token','Weixin\WxController@accessToken'); //存入accessToken
 
 Route::get('menu','Weixin\WxController@menu'); //创建菜单
