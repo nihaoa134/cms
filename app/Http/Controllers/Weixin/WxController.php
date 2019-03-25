@@ -14,7 +14,7 @@ class WxController extends Controller
     /**
      *首次接入
      */
-    public function validToken1()
+    public function valid1()
     {
         //echo $_GET['echostr'];
         $data = file_get_contents("php://input");
