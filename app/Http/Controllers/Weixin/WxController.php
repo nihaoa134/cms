@@ -258,7 +258,7 @@ class WxController extends Controller
             $arr = $redis->hGetAll($v);
             array_push($res, $arr);
         }
-        return view('weixin.codeshows', ['res' => $res]);
+        return view('weixin.codeshow', ['res' => $res]);
     }
 
 }
