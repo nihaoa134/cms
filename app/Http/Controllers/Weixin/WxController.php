@@ -247,7 +247,7 @@ class WxController extends Controller
 
     }
     //登陆扫码
-    public function codelogin()
+    public function codeshow()
     {
         $redis = new \redis;
         $redis->connect("127.0.0.1", 6379);//exit;
@@ -258,7 +258,7 @@ class WxController extends Controller
             $arr = $redis->hGetAll($v);
             array_push($res, $arr);
         }
-        return view('weixin.showlogin', ['res' => $res]);
+        return view('weixin.codeshows', ['res' => $res]);
     }
 
 }
