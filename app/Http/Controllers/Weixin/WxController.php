@@ -17,38 +17,10 @@ class WxController extends Controller
     public function validToken1()
     {
         echo $_GET['echostr'];
-    }
+        $data = file_get_contents("php://input");
 
-    /*获取accesstoken值*/
-    public function accessToken(){
-        $obj = new \url();
-        $appid = "wx0ed775ffa80afa46";
-        $appsecret = "6a5574a26d9bc3db5a3df198f16d855d";
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
-        /*echo  $url;
-        exit;*/
-        $access = $obj -> sendGet($url);
-        $arr = json_decode($access,true);
-        $accesstoken = $arr['access_token'];
-        $key = "accesstoken";
-        //cache::flush();
-        $time = $arr['expires_in']/60;
-        cache([$key=>$accesstoken],$time);
-       $accessToken = cache($key);
-        echo $accessToken;
-    }
-
-    /*获取accesstoken*/
-    public function shuaxin()
-    {
-        $obj = new \url();
-        $key = "accesstoken";
-        $accessToken = cache($key);
-        $url = "https://api.weixin.qq.com/cgi-bin/clear_quota?access_token=$accessToken";
-        $arr = array("appid" => "wx0ed775ffa80afa46");
-        $arrjson = json_encode($arr, JSON_UNESCAPED_UNICODE);
-        $val = $obj->sendPost($url, $arrjson);
-        echo $val;
+        //解析XML
+        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
     }
     //接收事件
     public function jieshou(){
@@ -86,6 +58,38 @@ class WxController extends Controller
             exit();
         }
     }
+    /*获取accesstoken值*/
+    public function accessToken(){
+        $obj = new \url();
+        $appid = "wx0ed775ffa80afa46";
+        $appsecret = "6a5574a26d9bc3db5a3df198f16d855d";
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
+        /*echo  $url;
+        exit;*/
+        $access = $obj -> sendGet($url);
+        $arr = json_decode($access,true);
+        $accesstoken = $arr['access_token'];
+        $key = "accesstoken";
+        //cache::flush();
+        $time = $arr['expires_in']/60;
+        cache([$key=>$accesstoken],$time);
+       $accessToken = cache($key);
+        echo $accessToken;
+    }
+
+    /*获取accesstoken*/
+    public function shuaxin()
+    {
+        $obj = new \url();
+        $key = "accesstoken";
+        $accessToken = cache($key);
+        $url = "https://api.weixin.qq.com/cgi-bin/clear_quota?access_token=$accessToken";
+        $arr = array("appid" => "wx0ed775ffa80afa46");
+        $arrjson = json_encode($arr, JSON_UNESCAPED_UNICODE);
+        $val = $obj->sendPost($url, $arrjson);
+        echo $val;
+    }
+
     /*创建菜单*/
     public function menu(){
         /*

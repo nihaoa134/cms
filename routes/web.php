@@ -18,12 +18,11 @@ Route::get('user', 'User@text');
 
 
 Route::get('weixin','Weixin\WxController@index');
-Route::get('/valid1','Weixin\WxController@jieshou');
+Route::get('/valid1','Weixin\WxController@validToken1');
 Route::get('weixin/token','Weixin\WxController@accessToken'); //存入accessToken
 
 Route::get('menu','Weixin\WxController@menu'); //创建菜单
 Route::any('domenu','Weixin\WxController@domenu'); //创建菜单
-Route::any('jieshou','Weixin\WxController@jieshou'); //接收事件
 
 
 Route::get('label','Label\labelController@label'); //添加标签页面
