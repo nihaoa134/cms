@@ -21,7 +21,7 @@ class PayController extends Controller
             'mch_id' =>'1500086022',
             'nonce_str' =>$str,
             'sign_type' =>'MD5',
-            'body' =>'席宏刚一条腿',
+            'body' =>'席宏刚三条腿',
             'out_trade_no' =>$orderid,                       //本地订单号
             'total_fee' =>1,                               //用户要支付的总金额
             'spbill_create_ip' =>$ip,
@@ -51,7 +51,7 @@ class PayController extends Controller
         $arr = json_decode(json_encode(simplexml_load_string($xml,'SimpleXMLElement',LIBXML_NOCDATA)),true);
         file_put_contents("logs/wxstatus.log",var_export($arr,true),FILE_APPEND);
         $sign = $arr['sign'];
-        $sign = "weixin:$sign\n";
+        $sign = "weixin:{$sign}\n";
         unset($arr['sgin']);
         $newstr = $this->checksign($arr);
         $newstr = strtoupper($newstr);
