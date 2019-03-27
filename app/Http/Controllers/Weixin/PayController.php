@@ -23,12 +23,12 @@ class PayController extends Controller
             'out_trade_no' => $orderid,                       //本地订单号
             'total_fee' => '1',                               //用户要支付的总金额
             'spbill_create_ip' => $_SERVER['REMOTE_ADDR'],
-            'notify_url' => 'pp.lixiaonitongxue.top/index',
+            'notify_url' => 'http://pp.lixiaonitongxue.top/index',
             'trade_type' => 'NATIVE',
         );
         ksort($info);
-        $strpay = http_build_query($info);
-        $strpay = "&key=$key";
+        $strpay = urldecode(http_build_query($info));
+        $strpay.="&key=$key";
         $endstr = md5($strpay);
         $info['sign'] = $endstr;
 
@@ -36,9 +36,10 @@ class PayController extends Controller
         $arr2 = $obj->arr2Xml($info);
 //        echo $arr2;
         $bol=$obj->sendPost($url,$arr2);
+//        dump($bol);
         $data = simplexml_load_string($bol);
         $code = $data->code_url;
-//        print_r($code);
+//        print_r($code);die;
         return view('weixin.wxpay');
     }
 
