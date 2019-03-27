@@ -36,11 +36,11 @@ class PayController extends Controller
         $arr2 = $obj->arr2Xml($info);
 //        echo $arr2;
         $bol=$obj->sendPost($url,$arr2);
-//        dump($bol);
         $data = simplexml_load_string($bol);
         $code = $data->code_url;
+        //echo $code;die;
 //        print_r($code);die;
-        return view('weixin.wxpay');
+        return view('weixin.wxpay',['code'=>$code]);
     }
 
 }

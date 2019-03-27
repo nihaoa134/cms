@@ -15,7 +15,7 @@
 <script>
     // 设置参数方式
     var qrcode = new QRCode('qrcode', {
-        text: 'your content',
+        text: '{{$code}}}',
         width: 256,
         height: 256,
         colorDark : '#000000',
