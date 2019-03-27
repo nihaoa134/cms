@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <script src="./js/qrcodejs-master/qrcode.js"></script>
+<script src="./js/qrcodejs-master/jquery.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
