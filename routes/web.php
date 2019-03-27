@@ -58,10 +58,16 @@ Route::any('wxlogin','Weixin\WxController@wxlogin'); //微信登陆获取code
 Route::any('wxlogincode','Weixin\WxController@wxlogincode'); //处理code
 Route::any('123','Weixin\WxController@tanchi'); //tanchi
 
+
+Route::any('task','Task\TaskController@Tlike');//任务展示
+Route::any('task1','Task\TaskController@Tlike1');//任务展示
+
+
 Route::any('showlogin','Weixin\WxController@showlogin'); //登录展示
 Route::any('codeshow','Weixin\WxController@codeshow'); //登录展示
 Route::any('QRcode','Weixin\WxController@QRcode'); //二维码
 
+Route::any('wtest','Weixin\PayController@wtest'); //二维码
 
 
 

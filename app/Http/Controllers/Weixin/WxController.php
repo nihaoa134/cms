@@ -261,4 +261,5 @@ class WxController extends Controller
         return view('weixin.codeshow', ['res' => $res]);
     }
 
+
 }
