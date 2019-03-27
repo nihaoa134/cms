@@ -52,7 +52,7 @@ class PayController extends Controller
         file_put_contents("logs/wxstatus.log",var_export($arr,true),FILE_APPEND);
         $sign = $arr['sign'];
         $sign = "weixin:$sign\n";
-        unset($arr['sgin']);
+        unset($arr['sign']);
         $newstr = $this->checksign($arr);
         $newstr = strtoupper($newstr);
         $newstr="localhost:$newstr\n";
