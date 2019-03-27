@@ -67,7 +67,9 @@ Route::any('showlogin','Weixin\WxController@showlogin'); //登录展示
 Route::any('codeshow','Weixin\WxController@codeshow'); //登录展示
 Route::any('QRcode','Weixin\WxController@QRcode'); //二维码
 
-Route::any('wtest','Weixin\PayController@wtest'); //二维码
+Route::any('wtest','Weixin\PayController@wtest'); //二维码支付
+Route::any('wxstatus','Weixin\PayController@wxstatus'); //微信验签
+
 
 
 

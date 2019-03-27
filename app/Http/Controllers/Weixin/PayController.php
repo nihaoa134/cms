@@ -15,7 +15,7 @@ class PayController extends Controller
         $key = '7c4a8d09ca3762af61e59520943AB26Q';
         $url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
         $ip = $_SERVER['REMOTE_ADDR'];
-        $notify_url = "http://pp.lixiaonitongxue.top/index";
+        $notify_url = "http://node.lixiaonitongxue.top/wxstatus";
         $info = array(
             'appid' =>'wxd5af665b240b75d4',
             'mch_id' =>'1500086022',
