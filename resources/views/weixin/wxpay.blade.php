@@ -9,13 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-<div id="qrcode"></div>
+    <div id="qrcode"></div>
 </body>
 </html>
 <script>
-    // 简单方式
-    new QRCode(document.getElementById('qrcode'), 'your content');
-
     // 设置参数方式
     var qrcode = new QRCode('qrcode', {
         text: 'your content',
@@ -26,7 +23,4 @@
         correctLevel : QRCode.CorrectLevel.H
     });
 
-    // 使用 API
-    qrcode.clear();
-    qrcode.makeCode('new content');
 </script>
