@@ -70,6 +70,10 @@ Route::any('QRcode','Weixin\WxController@QRcode'); //二维码
 Route::any('wtest','Weixin\PayController@wtest'); //二维码支付
 Route::any('wxstatus','Weixin\PayController@wxstatus'); //微信验签
 
+Route::any('orderlist','order\OrderlistController@orderlist'); //微信验签
+
+
+
 
 
 
