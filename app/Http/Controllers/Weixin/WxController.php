@@ -16,12 +16,12 @@ class WxController extends Controller
      */
     public function valid1()
     {
-        echo $_GET['echostr'];
-//        $data = file_get_contents("php://input");
-////        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
-//        $objxml = simplexml_load_string($data);
-//        print_r($objxml);
-//        file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
+        //echo $_GET['echostr'];
+        $data = file_get_contents("php://input");
+//        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
+        $objxml = simplexml_load_string($data);
+        print_r($objxml);
+        file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
     }
 
 /*    //接收事件
