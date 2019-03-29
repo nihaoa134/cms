@@ -18,7 +18,7 @@ Route::get('user', 'User@text');
 
 
 Route::get('weixin','Weixin\WxController@index');
-Route::any('/valid1','Weixin\WxController@valid1');
+Route::any('valid1','Weixin\WxController@valid1');
 Route::get('weixin/token','Weixin\WxController@accessToken'); //存入accessToken
 Route::get('weixin/shuaxin','Weixin\WxController@shuaxin'); //存入accessToken
 
