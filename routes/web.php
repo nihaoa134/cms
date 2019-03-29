@@ -20,6 +20,7 @@ Route::get('user', 'User@text');
 Route::get('weixin','Weixin\WxController@index');
 Route::any('/valid1','Weixin\WxController@valid1');
 Route::get('weixin/token','Weixin\WxController@accessToken'); //存入accessToken
+Route::get('weixin/shuaxin','Weixin\WxController@shuaxin'); //存入accessToken
 
 Route::get('menu','Weixin\WxController@menu'); //创建菜单
 Route::any('domenu','Weixin\WxController@domenu'); //创建菜单
@@ -70,13 +71,9 @@ Route::any('QRcode','Weixin\WxController@QRcode'); //二维码
 Route::any('wtest','Weixin\PayController@wtest'); //二维码支付
 Route::any('wxstatus','Weixin\PayController@wxstatus'); //微信验签
 
-Route::any('orderlist','order\OrderlistController@orderlist'); //微信验签
+Route::any('orderlist','order\OrderlistController@orderlist'); //支付展示
 
-
-
-
-
-
-
-
-
+Route::any('kefu','User\UserController@kefu'); //客服聊天界面
+Route::any('kefu1','User\UserController@kefu1'); //客服聊天
+Route::any('kefu2','User\UserController@kefu2'); //取客服记录
+Route::any('kefu3','User\UserController@kefu3'); //取用户记录

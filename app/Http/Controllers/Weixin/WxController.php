@@ -22,11 +22,8 @@ class WxController extends Controller
         $objxml = simplexml_load_string($data);
         print_r($objxml);
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
-        $redis = new \redis;
-        $redis->connect("127.0.0.1",6379);//exit;
-        $like = '';
-
     }
+
 /*    //接收事件
     public function jieshou(){
         $data = file_get_contents("php://input");
@@ -81,7 +78,7 @@ class WxController extends Controller
         echo $accessToken;
     }
 
-    /*获取accesstoken*/
+    /*刷新accesstoken*/
     public function shuaxin()
     {
         $obj = new \url();

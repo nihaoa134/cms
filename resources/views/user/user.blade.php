@@ -42,7 +42,10 @@
                             <td>{{$v['openid']}}</td>
                             <td>{{$v['nickname']}}</td>
                             <td><img src="{{$v['headimgurl']}}" alt=""></td>
-                            <td><a href="/blake?id= {{$v['openid']}}">拉黑</a></td>
+                            <td>
+								<a href="/blake?id= {{$v['openid']}}">拉黑</a>
+								<a href="/kefu?id={{$v['openid']}}&name={{$v['nickname']}}">聊天</a>
+							</td>
                         </tr>
 						@endforeach
 					</table>
@@ -54,42 +57,5 @@
 		</div>
 
 	</div>
-
-
-	<!-- 删除弹出框 -->
-	<div class="banDel">
-		<div class="delete">
-			<div class="close">
-			<input type="hidden" id="admin_id" value=''/>
-				<a><img src="img/shanchu.png" /></a>
-			</div>
-			<p class="delP1">你确定要删除此条记录吗？</p>
-			<p class="delP2">
-				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
-			</p>
-		</div>
-	</div>
-	<!-- 删除弹出框  end-->
 </body>
-
-<script type="text/javascript">
-// 广告弹出框
-$(".delban").click(function(){
-	var id= $(this).attr('value');
-	$('#admin_id').val(id);
-  $(".banDel").show();
-});
-$(".close").click(function(){
-  $(".banDel").hide();
-});
-$(".no").click(function(){
-  $(".banDel").hide();
-});
-$(".yes").click(function(){
-   
-   alert($('#admin_id').val());
-   
-});
-// 广告弹出框 end
-</script>
 </html>
