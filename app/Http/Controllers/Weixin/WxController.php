@@ -20,7 +20,7 @@ class WxController extends Controller
         $data = file_get_contents("php://input");
 //        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         $objxml = simplexml_load_string($data);
-        print_r($objxml);
+        print_r($objxml);die;
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
         $openid = $objxml->FromUserName;
         $content=$objxml->Content;
