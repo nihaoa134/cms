@@ -163,7 +163,7 @@
                 var str="";
                 $.each(msg,function(i,v){
                     str+=
-                        "<li><span>"+v.date+"</span></li>"
+                        "<li>自己<span>"+v.date+"</span></li>"
 
                 });
                 $('#leng').append(str);
@@ -171,5 +171,24 @@
 
          })
     },3000)
+    setInterval(function () {
+        var start=$("#leng").find('li').length;
+        $.ajax({
+            url:  '/valid1',
+            type: 'post',
+            data: {start:start},
+            dataType: 'json',
+            success: function (msg) {
+                var data=msg.res;
+                var str="";
+                $.each(msg,function(i,v){
+                    str+=
+                        "<li>对方<span>"+v.date+"</span></li>"
 
+                });
+                $('#leng').append(str);
+            }
+
+        })
+    },3000)
 </script>

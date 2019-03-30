@@ -22,6 +22,18 @@ class WxController extends Controller
         $objxml = simplexml_load_string($data);
         print_r($objxml);
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
+        $openid = $objxml->FromUserName;
+        $content=$objxml->Content;
+        $redis = new \redis;
+        $redis->connect("127.0.0.1",6379);//exit;
+        $id = $redis->incr('id');
+        $hest = "id_{$id}";
+        $like = "kefu2";
+        $redis->hset($hest,"id","$id");
+        $redis->hset($hest,"openid","$openid");
+        $redis->hset($hest,"date","$content");
+        $redis->rPush($like,$hest);
+
     }
 
 /*    //接收事件

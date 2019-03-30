@@ -79,20 +79,6 @@ class UserController extends Controller
         return $res;
 //        print_r($res);
     }
-    public function  kefu3(){
-        $str=file_get_contents("php://input");
-        file_put_contents("/wx_event.log",$str,FILE_APPEND);
-        $obj=simplexml_load_string($str);
-/*        $redis = new \redis;
-        $redis->connect("127.0.0.1",6379);//exit;
-        $id = $redis->incr('id');
-        $hest = "id_{$id}";
-        $like = "kefu2";
-        $redis->hset($hest,"id","$id");
-        $redis->hset($hest,"openid","$openid");
-        $redis->hset($hest,"date","$data");
-        $redis->rPush($like,$hest);*/
-    }
     //黑名单列表
     public function blakeshow(Request $request)
     {
