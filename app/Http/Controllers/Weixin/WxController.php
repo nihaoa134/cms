@@ -20,7 +20,6 @@ class WxController extends Controller
         $data = file_get_contents("php://input");
 //        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         $objxml = simplexml_load_string($data);
-        print_r($objxml);die;
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
         $openid = $objxml->FromUserName;
         $content=$objxml->Content;
@@ -37,18 +36,15 @@ class WxController extends Controller
     }
     //取聊天记录
     public function kefu3(Request $request){
-        $start=$request->input('start');
         $redis = new \redis;
         $redis->connect("127.0.0.1",6379);//exit;
         $like="kefu2";
-        $data = $redis->lrange($like,$start,-1);
+        $data = $redis->lrange($like,0,-1);
         $res =array();
         foreach($data as $k => $v){
             $arr = $redis -> hGetAll($v);
             array_push($res,$arr);
         }
-        return $res;
-//        print_r($res);
     }
 /*    //接收事件
     public function jieshou(){
