@@ -35,7 +35,21 @@ class WxController extends Controller
         $redis->rPush($like,$hest);
 
     }
-
+    //取聊天记录
+    public function kefu3(Request $request){
+        $start=$request->input('start');
+        $redis = new \redis;
+        $redis->connect("127.0.0.1",6379);//exit;
+        $like="kefu2";
+        $data = $redis->lrange($like,$start,-1);
+        $res =array();
+        foreach($data as $k => $v){
+            $arr = $redis -> hGetAll($v);
+            array_push($res,$arr);
+        }
+        return $res;
+//        print_r($res);
+    }
 /*    //接收事件
     public function jieshou(){
         $data = file_get_contents("php://input");

@@ -174,7 +174,7 @@
     setInterval(function () {
         var start=$("#leng").find('li').length;
         $.ajax({
-            url:  '/valid1',
+            url:  '/kefu3',
             type: 'post',
             data: {start:start},
             dataType: 'json',
