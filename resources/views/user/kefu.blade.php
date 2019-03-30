@@ -80,7 +80,7 @@
             }
         .content {
             font-size: 20px;
-            width: 1600px;
+            width: 1500px;
             height: 662px;
             overflow: auto;
             padding: 5px;
@@ -174,10 +174,11 @@
          })
     },3000)
     setInterval(function () {
+        var start=$("#leng").find('li').length;
         $.ajax({
             url:  '/kefu3',
             type: 'post',
-            data: '',
+            data: {start:start},
             dataType: 'json',
             success: function (msg) {
                 var data=msg.res;
