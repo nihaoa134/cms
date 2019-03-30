@@ -27,7 +27,7 @@ class WxController extends Controller
         $redis->connect("127.0.0.1",6379);//exit;
         $id = $redis->incr('id');
         $hest = "id_{$id}";
-        $like = "kefu2";
+        $like = "ziji";
         $redis->hset($hest,"id","$id");
         $redis->hset($hest,"openid","$openid");
         $redis->hset($hest,"date","$content");
@@ -39,7 +39,7 @@ class WxController extends Controller
         $start=$request->input('start');
         $redis = new \redis;
         $redis->connect("127.0.0.1",6379);//exit;
-        $like="kefu2";
+        $like="ziji";
         $data = $redis->lrange($like,$start,-1);
         $res =array();
         foreach($data as $k => $v){

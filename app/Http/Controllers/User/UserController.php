@@ -58,7 +58,7 @@ class UserController extends Controller
         $redis->connect("127.0.0.1",6379);//exit;
         $id = $redis->incr('id');
         $hest = "id_{$id}";
-        $like = "kefu1";
+        $like = "kefu";
         $redis->hset($hest,"id","$id");
         $redis->hset($hest,"openid","$openid");
         $redis->hset($hest,"date","$data");
@@ -69,7 +69,7 @@ class UserController extends Controller
         $start=$request->input('start');
         $redis = new \redis;
         $redis->connect("127.0.0.1",6379);//exit;
-        $like="kefu1";
+        $like="kefu";
         $data = $redis->lrange($like,$start,-1);
         $res =array();
         foreach($data as $k => $v){
