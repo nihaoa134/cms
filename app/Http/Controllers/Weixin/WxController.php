@@ -24,10 +24,10 @@ class WxController extends Controller
         $openid = $objxml->FromUserName;
         $time = $objxml->CreateTime;
         $info = DB::table('wxuser')->where(['name'=>$openid])->first();
-        
+
         if(empty($info)){
             DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
-            $xml = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$openid.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注'.$openid.'公众号]]></Content></xml>';
+            $xml = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$objxml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注'.$openid.'公众号]]></Content></xml>';
             echo $xml;
         }
 
