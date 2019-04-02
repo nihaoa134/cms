@@ -28,7 +28,18 @@ class WxController extends Controller
 
         $info = DB::table('wxuser')->where('name',$openid)->first();
 
-        if(empty($info)){
+        if($info){
+            $str = "
+            <xml>
+              <ToUserName><![CDATA[$openid]]></ToUserName>
+              <FromUserName><![CDATA[$form]]></FromUserName>
+              <CreateTime>$time</CreateTime>
+              <MsgType><![CDATA[text]]></MsgType>
+              <Content><![CDATA[欢迎回来]]></Content>
+            </xml>
+            ";
+            echo $str;
+        }else{
             DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
             $str = "
             <xml>
@@ -37,17 +48,6 @@ class WxController extends Controller
               <CreateTime>$time</CreateTime>
               <MsgType><![CDATA[text]]></MsgType>
               <Content><![CDATA[欢迎关注xxx公众号]]></Content>
-            </xml>
-            ";
-            return $str;
-        }else{
-            $str = "
-            <xml>
-              <ToUserName><![CDATA[$openid]]></ToUserName>
-              <FromUserName><![CDATA[$form]]></FromUserName>
-              <CreateTime>$time</CreateTime>
-              <MsgType><![CDATA[text]]></MsgType>
-              <Content><![CDATA[欢迎回来]]></Content>
             </xml>
             ";
             echo $str;
