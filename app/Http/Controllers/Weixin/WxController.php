@@ -29,7 +29,10 @@ class WxController extends Controller
             DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
             $xml = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$objxml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注'.$openid.'公众号]]></Content></xml>';
             echo $xml;
-        }
+        }else{
+            $xml = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$objxml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎回来'.$openid.']]></Content></xml>';
+            echo $xml;
+    }
 
 
 /*       $content=$objxml->Content;
