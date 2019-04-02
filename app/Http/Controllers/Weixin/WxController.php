@@ -16,7 +16,9 @@ class WxController extends Controller
         $url = "http://www.weather.com.cn/data/cityinfo/101010100.html";
         $bol = $obj->sendGet($url);
         $arr = json_decode($bol, true);
-        print_r($arr);
+        $arr2 =$arr['weatherinfo'];
+
+
     }
     /**
      *首次接入
