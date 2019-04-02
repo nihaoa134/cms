@@ -25,34 +25,35 @@ class WxController extends Controller
         $openid = $objxml->FromUserName;
         $form = $objxml->ToUserName;
         $time = $objxml->CreateTime;
+        $type = $objxml->MsgType;
 
         $info = DB::table('wxuser')->where('name',$openid)->first();
-
-        if($info){
-            $str = "
-            <xml>
-              <ToUserName><![CDATA[$openid]]></ToUserName>
-              <FromUserName><![CDATA[$form]]></FromUserName>
-              <CreateTime>$time</CreateTime>
-              <MsgType><![CDATA[text]]></MsgType>
-              <Content><![CDATA[欢迎回来]]></Content>
-            </xml>
-            ";
-            echo $str;
-        }else{
-            DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
-            $str = "
-            <xml>
-              <ToUserName><![CDATA[$openid]]></ToUserName>
-              <FromUserName><![CDATA[$form]]></FromUserName>
-              <CreateTime>$time</CreateTime>
-              <MsgType><![CDATA[text]]></MsgType>
-              <Content><![CDATA[欢迎关注xxx公众号]]></Content>
-            </xml>
-            ";
-            echo $str;
-    }
-
+        if ($type = 'event'){
+            if($info){
+                $str = "
+                <xml>
+                  <ToUserName><![CDATA[$openid]]></ToUserName>
+                  <FromUserName><![CDATA[$form]]></FromUserName>
+                  <CreateTime>$time</CreateTime>
+                  <MsgType><![CDATA[text]]></MsgType>
+                  <Content><![CDATA[欢迎回来]]></Content>
+                </xml>
+                ";
+                echo $str;
+            }else{
+                DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
+                $str = "
+                <xml>
+                  <ToUserName><![CDATA[$openid]]></ToUserName>
+                  <FromUserName><![CDATA[$form]]></FromUserName>
+                  <CreateTime>$time</CreateTime>
+                  <MsgType><![CDATA[text]]></MsgType>
+                  <Content><![CDATA[欢迎关注xxx公众号]]></Content>
+                </xml>
+                ";
+                echo $str;
+            }
+         }
 
 /*       $content=$objxml->Content;
         $redis = new \redis;
