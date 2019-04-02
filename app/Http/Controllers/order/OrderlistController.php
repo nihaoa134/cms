@@ -11,4 +11,9 @@ class OrderlistController extends Controller
 //        echo $info;die;
         return view('Order.list',['info'=>$info]);
     }
+    public function lookshow(){
+        $info = DB::table('lookshow')->get();
+//        echo $info;die;
+        return view('Order.look',['info'=>$info]);
+    }
 }

@@ -152,7 +152,7 @@
             success: function () {
             }
         });
-    })
+    });
     setInterval(function () {
         var start=$("#leng").find('li').length;
         $.ajax({
@@ -171,10 +171,7 @@
                 $('#leng').append(str);
             }
 
-         })
-    },3000)
-    setInterval(function () {
-        var start=$("#leng").find('li').length;
+         });
         $.ajax({
             url:  '/kefu3',
             type: 'post',

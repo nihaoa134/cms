@@ -22,7 +22,10 @@ class WxController extends Controller
         $objxml = simplexml_load_string($data);
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
         $openid = $objxml->FromUserName;
-        $content=$objxml->Content;
+        $time = $objxml->CreateTime;
+        DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
+
+/*       $content=$objxml->Content;
         $redis = new \redis;
         $redis->connect("127.0.0.1",6379);//exit;
         $id = $redis->incr('id');
@@ -31,7 +34,7 @@ class WxController extends Controller
         $redis->hset($hest,"id","$id");
         $redis->hset($hest,"openid","$openid");
         $redis->hset($hest,"date","$content");
-        $redis->rPush($like,$hest);
+        $redis->rPush($like,$hest);*/
 
     }
     //取聊天记录
@@ -280,6 +283,10 @@ class WxController extends Controller
             array_push($res, $arr);
         }
         return view('weixin.codeshow', ['res' => $res]);
+    }
+    //扫码关注
+    public function scanQR(){
+        return view('weixin.attention');
     }
 
 
