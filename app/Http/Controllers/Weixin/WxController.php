@@ -28,27 +28,13 @@ class WxController extends Controller
 //        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         $objxml = simplexml_load_string($data);
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
-
         $openid = $objxml->FromUserName;
         $form = $objxml->ToUserName;
         $time = $objxml->CreateTime;
         $type = $objxml->Event;
         $content = $objxml->Content;
-
         $info = DB::table('wxuser')->where('name',$openid)->first();
-        if ($type = 'subscribe'){
-            if($info){
-                $str = "
-                <xml>
-                  <ToUserName><![CDATA[$openid]]></ToUserName>
-                  <FromUserName><![CDATA[$form]]></FromUserName>
-                  <CreateTime>$time</CreateTime>
-                  <MsgType><![CDATA[text]]></MsgType>
-                  <Content><![CDATA[欢迎回来$openid]]></Content>
-                </xml>
-                ";
-                echo $str;
-            }else{
+        if(empty($info)){
                 DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
                 $str = "
                 <xml>
@@ -61,7 +47,7 @@ class WxController extends Controller
                 ";
                 echo $str;
             }
-         }
+
          if($content = '北京天气'){
              $obj = new \url();
              $url = "http://www.weather.com.cn/data/sk/101010100.html";
