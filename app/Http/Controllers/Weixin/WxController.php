@@ -23,13 +23,22 @@ class WxController extends Controller
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
 
         $openid = $objxml->FromUserName;
+        $form = $objxml->ToUserName;
         $time = $objxml->CreateTime;
         $info = DB::table('wxuser')->where(['name'=>$openid])->first();
 
         if(empty($info)){
             DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
-            $xml = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$objxml->ToUserName.']]></FromUserName><CreateTime>'.$time.'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注'.$openid.'公众号]]></Content></xml>';
-            echo $xml;
+            $str = '
+            <xml>
+              <ToUserName><![CDATA['.$openid.']]></ToUserName>
+              <FromUserName><![CDATA['.$form.']]></FromUserName>
+              <CreateTime>'.$time.'</CreateTime>
+              <MsgType><![CDATA[text]]></MsgType>
+              <Content><![CDATA[欢迎关注xxx公众号]]></Content>
+            </xml>
+            ';
+            echo $str;
         }else{
             $xml = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$objxml->ToUserName.']]></FromUserName><CreateTime>'.$time.'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎回来'.$openid.']]></Content></xml>';
             echo $xml;
