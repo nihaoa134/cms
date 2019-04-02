@@ -17,7 +17,7 @@ class WxController extends Controller
         $bol = $obj->sendGet($url);
         $arr = json_decode($bol, true);
         $arr2 =$arr['weatherinfo'];
-        print_r($arr2);
+
 
     }
     /**
@@ -36,7 +36,7 @@ class WxController extends Controller
         $type = $objxml->Event;
         $content = $objxml->Content;
         $info = DB::table('wxuser')->where('name',$openid)->first();
-        if(empty($info)){
+        if($info){
                 DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
                 $str = "
                 <xml>
@@ -44,11 +44,22 @@ class WxController extends Controller
                   <FromUserName><![CDATA[$form]]></FromUserName>
                   <CreateTime>$time</CreateTime>
                   <MsgType><![CDATA[text]]></MsgType>
-                  <Content><![CDATA[欢迎关注xxx公众号]]></Content>
+                  <Content><![CDATA[欢迎回来]]></Content>
                 </xml>
                 ";
                 echo $str;
-            }
+            }else{
+            $str = "
+                <xml>
+                  <ToUserName><![CDATA[$openid]]></ToUserName>
+                  <FromUserName><![CDATA[$form]]></FromUserName>
+                  <CreateTime>$time</CreateTime>
+                  <MsgType><![CDATA[text]]></MsgType>
+                  <Content><![CDATA[欢迎关注]]></Content>
+                </xml>
+                ";
+            echo $str;
+        }
 
          if($content = '北京天气'){
              $obj = new \url();
@@ -59,13 +70,14 @@ class WxController extends Controller
              $city = $arr2['city'];
              $temp1 = $arr2['temp1'];
              $temp2 = $arr2['temp2'];
+             $weather = $arr2['weather'];
              $str = '
                 <xml>
                   <ToUserName><![CDATA[$openid]]></ToUserName>
                   <FromUserName><![CDATA[$form]]></FromUserName>
                   <CreateTime>$time</CreateTime>
                   <MsgType><![CDATA[text]]></MsgType>
-                  <Content><![CDATA[城市:'.$city.'天气:'.多云转晴.'最低温度:'.$temp1.'最高温度:'.$temp2.']]></Content>
+                  <Content><![CDATA[城市:'.$city.'天气:'.$weather.'最低温度:'.$temp1.'最高温度:'.$temp2.']]></Content>
                 </xml>
                 ';
              echo $str;
