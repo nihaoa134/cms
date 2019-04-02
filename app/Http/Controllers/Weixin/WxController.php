@@ -23,7 +23,7 @@ class WxController extends Controller
         file_put_contents('logs/wx_event.log',$data,FILE_APPEND);
         $openid = $objxml->FromUserName;
         $time = $objxml->CreateTime;
-        $info = DB::where(['openid'=>$openid])->first();
+        $info = DB::table('wxuser')->where(['openid'=>$openid])->first();
         if(empty($info)){
             DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
             $xml = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$openid.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注'.$openid.'公众号]]></Content></xml>';
