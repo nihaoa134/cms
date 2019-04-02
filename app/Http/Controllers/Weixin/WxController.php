@@ -38,7 +38,7 @@ class WxController extends Controller
               <Content><![CDATA[欢迎关注xxx公众号]]></Content>
             </xml>
             ';
-            echo $str;
+            return $str;
         }else{
             $str = '
             <xml>
