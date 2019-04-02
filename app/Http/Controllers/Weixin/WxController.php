@@ -54,7 +54,7 @@ class WxController extends Controller
                           <Content><![CDATA[城市:'.$city.'天气:'.$weather.'最低温度:'.$temp1.'最高温度:'.$temp2.']]></Content>
                         </xml>';
                 echo $str;
-            }elseif($info){
+            }elseif(!empty($info)){
                 DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
                 $str = "<xml>
                   <ToUserName><![CDATA[$openid]]></ToUserName>
