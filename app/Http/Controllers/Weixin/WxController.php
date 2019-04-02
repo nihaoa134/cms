@@ -40,8 +40,16 @@ class WxController extends Controller
             ';
             echo $str;
         }else{
-            $xml = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$objxml->ToUserName.']]></FromUserName><CreateTime>'.$time.'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎回来'.$openid.']]></Content></xml>';
-            echo $xml;
+            $str = '
+            <xml>
+              <ToUserName><![CDATA['.$openid.']]></ToUserName>
+              <FromUserName><![CDATA['.$form.']]></FromUserName>
+              <CreateTime>'.$time.'</CreateTime>
+              <MsgType><![CDATA[text]]></MsgType>
+              <Content><![CDATA[欢迎回来]]></Content>
+            </xml>
+            ';
+            echo $str;
     }
 
 
