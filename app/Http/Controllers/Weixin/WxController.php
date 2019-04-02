@@ -26,7 +26,7 @@ class WxController extends Controller
         $form = $objxml->ToUserName;
         $time = $objxml->CreateTime;
 
-        $info = DB::table('wxuser')->where(['name',$openid])->first();
+        $info = DB::table('wxuser')->where('name',$openid)->first();
 
         if(empty($info)){
             DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
