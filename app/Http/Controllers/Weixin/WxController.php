@@ -17,7 +17,7 @@ class WxController extends Controller
         $bol = $obj->sendGet($url);
         $arr = json_decode($bol, true);
         $arr2 =$arr['weatherinfo'];
-
+        print_r($arr2);
 
     }
     /**
@@ -63,10 +63,10 @@ class WxController extends Controller
 
          if($content = '北京天气'){
              $obj = new \url();
-             $url = "http://www.weather.com.cn/data/sk/101010100.html";
+             $url = "http://www.weather.com.cn/data/cityinfo/101010100.html";
              $bol = $obj->sendGet($url);
              $arr = json_decode($bol, true);
-             $arr2 = $arr['weatherinfo'];
+             $arr2 =$arr['weatherinfo'];
              $city = $arr2['city'];
              $temp1 = $arr2['temp1'];
              $temp2 = $arr2['temp2'];
