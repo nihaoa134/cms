@@ -48,7 +48,7 @@ class WxController extends Controller
                 </xml>
                 ";
                 echo $str;
-            }else{
+            }elseif(!empty($info)){
             $str = "
                 <xml>
                   <ToUserName><![CDATA[$openid]]></ToUserName>
