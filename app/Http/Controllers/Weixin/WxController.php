@@ -47,8 +47,8 @@ class WxController extends Controller
                 $temp2 = $arr2['temp2'];
                 $weather = $arr2['weather'];
                 $str = '<xml>
-                          <ToUserName><![CDATA[$openid]]></ToUserName>
-                          <FromUserName><![CDATA[$form]]></FromUserName>
+                          <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                          <FromUserName><![CDATA['.$form.']]></FromUserName>
                           <CreateTime>$time</CreateTime>
                           <MsgType><![CDATA[text]]></MsgType>
                           <Content><![CDATA[城市:'.$city.'天气:'.$weather.'最低温度:'.$temp1.'最高温度:'.$temp2.']]></Content>
