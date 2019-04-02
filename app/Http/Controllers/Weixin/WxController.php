@@ -48,7 +48,7 @@ class WxController extends Controller
                 </xml>
                 ";
                 echo $str;
-            }elseif($type = 'text'){
+            }elseif($content = '北京天气'){
             $obj = new \url();
             $url = "http://www.weather.com.cn/data/cityinfo/101010100.html";
             $bol = $obj->sendGet($url);
