@@ -33,7 +33,7 @@ class WxController extends Controller
         $openid = $objxml->FromUserName;
         $form = $objxml->ToUserName;
         $time = $objxml->CreateTime;
-        $type = $objxml->Event;
+        $type = $objxml->MsgType;
         $content = $objxml->Content;
         $info = DB::table('wxuser')->where('name',$openid)->first();
         if($info){
