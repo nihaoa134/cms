@@ -66,7 +66,7 @@ class WxController extends Controller
                   <FromUserName><![CDATA[$form]]></FromUserName>
                   <CreateTime>$time</CreateTime>
                   <MsgType><![CDATA[text]]></MsgType>
-                  <Content><![CDATA[城市：$city.天气$weather.最低温度$temp1.最高温度$temp2]]></Content>
+                  <Content><![CDATA[城市:$city.天气:$weather.最低温度:$temp1.最高温度:$temp2]]></Content>
                 </xml>
                 ";
              echo $str;
