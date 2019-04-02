@@ -36,7 +36,6 @@ class WxController extends Controller
         $type = $objxml->Event;
         $content = $objxml->Content;
         $info = DB::table('wxuser')->where('name',$openid)->first();
-        if($type=)
         if($info){
                 DB::table('wxuser')->insert(['name'=>$openid,'time'=>$time]);
                 $str = "
