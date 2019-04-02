@@ -81,3 +81,4 @@ Route::any('kefu3','Weixin\WxController@kefu3'); //取自己记录
 Route::any('look','order\OrderlistController@lookshow'); //浏览记录展示
 
 Route::any('scanQR','Weixin\WxController@scanQR'); //扫码关注
+Route::any('tianqi','Weixin\WxController@tianqi'); //扫码关注

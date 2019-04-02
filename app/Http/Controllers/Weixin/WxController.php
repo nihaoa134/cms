@@ -11,6 +11,13 @@ class WxController extends Controller
     public function index(){
         return view('index');
     }
+    public function  tianqi(){
+        $obj = new \url();
+        $url = "http://www.weather.com.cn/data/cityinfo/101010100.html";
+        $bol = $obj->sendGet($url);
+        $arr = json_decode($bol, true);
+        print_r($arr);
+    }
     /**
      *首次接入
      */
@@ -26,6 +33,7 @@ class WxController extends Controller
         $form = $objxml->ToUserName;
         $time = $objxml->CreateTime;
         $type = $objxml->Event;
+        $content = $objxml->Content;
 
         $info = DB::table('wxuser')->where('name',$openid)->first();
         if ($type = 'subscribe'){
@@ -36,7 +44,7 @@ class WxController extends Controller
                   <FromUserName><![CDATA[$form]]></FromUserName>
                   <CreateTime>$time</CreateTime>
                   <MsgType><![CDATA[text]]></MsgType>
-                  <Content><![CDATA[欢迎回来]]></Content>
+                  <Content><![CDATA[欢迎回来$openid]]></Content>
                 </xml>
                 ";
                 echo $str;
@@ -53,6 +61,27 @@ class WxController extends Controller
                 ";
                 echo $str;
             }
+         }
+         if($content = '北京天气'){
+             $obj = new \url();
+             $url = "http://www.weather.com.cn/data/sk/101010100.html";
+             $bol = $obj->sendGet($url);
+             $arr = json_decode($bol, true);
+             $arr2 = $arr['weatherinfo'];
+             $city = $arr2['city'];
+             $weather = $arr2['weather'];
+             $temp1 = $arr2['temp1'];
+             $temp2 = $arr2['temp2'];
+             $str = "
+                <xml>
+                  <ToUserName><![CDATA[$openid]]></ToUserName>
+                  <FromUserName><![CDATA[$form]]></FromUserName>
+                  <CreateTime>$time</CreateTime>
+                  <MsgType><![CDATA[text]]></MsgType>
+                  <Content><![CDATA[城市：$city.天气$weather.最低温度$temp1.最高温度$temp2]]></Content>
+                </xml>
+                ";
+             echo $str;
          }
 
 /*       $content=$objxml->Content;
