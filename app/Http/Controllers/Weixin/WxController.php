@@ -48,7 +48,27 @@ class WxController extends Controller
                 </xml>
                 ";
                 echo $str;
-            }else{
+            }elseif($content = '北京天气'){
+            $obj = new \url();
+            $url = "http://www.weather.com.cn/data/cityinfo/101010100.html";
+            $bol = $obj->sendGet($url);
+            $arr = json_decode($bol, true);
+            $arr2 =$arr['weatherinfo'];
+            $city = $arr2['city'];
+            $temp1 = $arr2['temp1'];
+            $temp2 = $arr2['temp2'];
+            $weather = $arr2['weather'];
+            $str = '
+                <xml>
+                  <ToUserName><![CDATA[$openid]]></ToUserName>
+                  <FromUserName><![CDATA[$form]]></FromUserName>
+                  <CreateTime>$time</CreateTime>
+                  <MsgType><![CDATA[text]]></MsgType>
+                  <Content><![CDATA[城市:'.$city.'天气:'.$weather.'最低温度:'.$temp1.'最高温度:'.$temp2.']]></Content>
+                </xml>
+                ';
+            echo $str;
+        }else{
             $str = "
                 <xml>
                   <ToUserName><![CDATA[$openid]]></ToUserName>
@@ -61,27 +81,7 @@ class WxController extends Controller
             echo $str;
         }
 
-         if($content = '北京天气'){
-             $obj = new \url();
-             $url = "http://www.weather.com.cn/data/cityinfo/101010100.html";
-             $bol = $obj->sendGet($url);
-             $arr = json_decode($bol, true);
-             $arr2 =$arr['weatherinfo'];
-             $city = $arr2['city'];
-             $temp1 = $arr2['temp1'];
-             $temp2 = $arr2['temp2'];
-             $weather = $arr2['weather'];
-             $str = '
-                <xml>
-                  <ToUserName><![CDATA[$openid]]></ToUserName>
-                  <FromUserName><![CDATA[$form]]></FromUserName>
-                  <CreateTime>$time</CreateTime>
-                  <MsgType><![CDATA[text]]></MsgType>
-                  <Content><![CDATA[城市:'.$city.'天气:'.$weather.'最低温度:'.$temp1.'最高温度:'.$temp2.']]></Content>
-                </xml>
-                ';
-             echo $str;
-         }
+
 
 /*       $content=$objxml->Content;
         $redis = new \redis;
