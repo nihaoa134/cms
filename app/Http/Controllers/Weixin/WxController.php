@@ -17,7 +17,7 @@ class WxController extends Controller
         $bol = $obj->sendGet($url);
         $arr = json_decode($bol, true);
         $arr2 =$arr['weatherinfo'];
-
+        print_r($arr2);
 
     }
     /**
@@ -57,7 +57,6 @@ class WxController extends Controller
              $arr = json_decode($bol, true);
              $arr2 = $arr['weatherinfo'];
              $city = $arr2['city'];
-             $weather = $arr2['weather'];
              $temp1 = $arr2['temp1'];
              $temp2 = $arr2['temp2'];
              $str = '
@@ -66,7 +65,7 @@ class WxController extends Controller
                   <FromUserName><![CDATA[$form]]></FromUserName>
                   <CreateTime>$time</CreateTime>
                   <MsgType><![CDATA[text]]></MsgType>
-                  <Content><![CDATA[城市:'.$city.'天气:'.$weather.'最低温度:'.$temp1.'最高温度:'.$temp2.']]></Content>
+                  <Content><![CDATA[城市:'.$city.'天气:'.多云转晴.'最低温度:'.$temp1.'最高温度:'.$temp2.']]></Content>
                 </xml>
                 ';
              echo $str;
