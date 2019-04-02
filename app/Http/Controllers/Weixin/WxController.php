@@ -25,10 +25,10 @@ class WxController extends Controller
         $openid = $objxml->FromUserName;
         $form = $objxml->ToUserName;
         $time = $objxml->CreateTime;
-        $type = $objxml->MsgType;
+        $type = $objxml->Event;
 
         $info = DB::table('wxuser')->where('name',$openid)->first();
-        if ($type = 'event'){
+        if ($type = 'subscribe'){
             if($info){
                 $str = "
                 <xml>
