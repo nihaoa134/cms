@@ -82,3 +82,11 @@ Route::any('look','order\OrderlistController@lookshow'); //浏览记录展示
 
 Route::any('scanQR','Weixin\WxController@scanQR'); //扫码关注
 Route::any('tianqi','Weixin\WxController@tianqi'); //扫码关注
+
+Route::any('openssl','App\OpensslController@private1'); //测试
+Route::any('upload','App\UploadController@upload'); //切片上传
+Route::any('uploadinfo','App\UploadController@uploadinfo'); //切片上传
+
+
+
+Route::any('login','User\AppuserController@login'); //App用户登录
