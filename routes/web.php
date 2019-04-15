@@ -90,3 +90,4 @@ Route::any('uploadinfo','App\UploadController@uploadinfo'); //切片上传
 
 
 Route::any('login','User\AppuserController@login'); //App用户登录
+Route::any('addshow','User\AppuserController@show'); //上拉下拉
