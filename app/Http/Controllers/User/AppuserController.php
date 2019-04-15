@@ -26,8 +26,8 @@ class AppuserController extends Controller
         }
     }
         //下拉展示
-        public function show(){
-        $data = DB::table('user')->Paginate('1')->toArray();
+        public function show(Request $request){
+        $data = DB::table('user')->Paginate(1)->toArray();
          $info = json_encode($data,1);
         return $info;
         }
