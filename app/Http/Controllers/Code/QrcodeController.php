@@ -17,7 +17,6 @@ class QrcodeController extends Controller
         $redis = new \Redis();
         $redis->connect("127.0.0.1",6379);
         $data = $redis->set($token,$uid);
-        var_dump($data);die;
         if ($data){
             return 1;
         }else{
