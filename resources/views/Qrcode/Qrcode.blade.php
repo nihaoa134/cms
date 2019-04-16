@@ -35,7 +35,7 @@ $token=$redis->sPop($key);
 
 </script>
 <script>
-    token = "<?php echo $token;?>"
+    var token = "<?php echo $token;?>"
     console.log(token)
     setInterval(function () {
         $.ajax({
