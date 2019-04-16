@@ -41,7 +41,7 @@ $token=$redis->sPop($key);
         $.ajax({
             url:  'http://node.lixiaonitongxue.top/gredis',
             type: 'post',
-            data: token,
+            data: {token:token},
             dataType: 'json',
             success: function (data) {
                 if (data==1){
