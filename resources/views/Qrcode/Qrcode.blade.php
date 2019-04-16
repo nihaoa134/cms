@@ -36,6 +36,7 @@ $token=$redis->sPop($key);
 </script>
 <script>
     token = "<?php echo $token;?>"
+    console.log(token)
     setInterval(function () {
         $.ajax({
             url:  'node.lixiaonitongxue.top/gredis',
