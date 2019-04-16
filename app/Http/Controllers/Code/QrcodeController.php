@@ -13,15 +13,16 @@ class QrcodeController extends Controller
     public function qredis(Request $request){
         $token = $request->token;
         $uid = $request->uid;
-
-        $redis = new \Redis();
+        echo $token;
+        echo $uid;
+/*        $redis = new \Redis();
         $redis->connect("127.0.0.1",6379);
         $data = $redis->set($token,$uid);
         if ($data){
             return 1;
         }else{
             return 2;
-        }
+        }*/
     }
     public function gredis(Request $request){
         $token = $request->token;
