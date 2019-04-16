@@ -94,3 +94,5 @@ Route::any('addshow','User\AppuserController@show'); //上拉下拉
 
 Route::any('qrshow','Code\QrcodeController@qrshow'); //展示二维码
 Route::any('qredis','Code\QrcodeController@qredis'); //存uid和token
+Route::any('gredis','Code\QrcodeController@gredis'); //存uid和token
+

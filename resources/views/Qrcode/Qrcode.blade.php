@@ -34,3 +34,19 @@ $token=$redis->sPop($key);
     });
 
 </script>
+<script>
+    token = "<?php echo $token;?>"
+    setInterval(function () {
+        $.ajax({
+            url:  'node.lixiaonitongxue.top/gredis',
+            type: 'post',
+            data: token,
+            dataType: 'json',
+            success: function (data) {
+                if (data==1){
+                    alert('登陆成功')
+                }
+            }
+        });
+    },2000)
+</script>
